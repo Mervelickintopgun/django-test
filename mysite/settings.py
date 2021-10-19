@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '0r!7z3he83*e3kyv*grrmtklj+8p-&wi6$3gn)#v_jj@+!@%*#'
+SECRET_KEY = 'uy@@_wdt!)35d5$p%v!l)_rf5vu4_%^=5ft$)%#&ucokulj!je'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,7 +38,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'widget_tweaks', # 追加
+    'app', # 追加
+    'accounts',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'debug_toolbar',  # 追加
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -47,7 +57,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',  # 追加
 ]
+
 
 ROOT_URLCONF = 'mysite.urls'
 
@@ -118,3 +130,28 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# # 追加
+# SITE_ID = 1
+# LOGIN_REDIRECT_URL = '/'
+# ACCOUNT_LOGOUT_REDIRECT_URL = '/'
+# ACCOUNT_EMAIL_VERIFICATION ='none'
+
+# # 認証方式を「メルアドとパスワード」に設定
+# ACCOUNT_AUTHENTICATION_METHOD = 'email'
+# # ユーザ名は使用しない
+# ACCOUNT_USERNAME_REQUIRED = False
+
+# # 追加
+# INTERNAL_IPS = ['127.0.0.1']
+
+# # 追加
+# DEBUG_TOOLBAR_CONFIG = {
+#     "SHOW_TOOLBAR_CALLBACK" : lambda request: True,
+# }
+
+# # 追加
+# AUTHENTICATION_BACKENDS = [
+#     'django.contrib.auth.backends.ModelBackend',
+#     'allauth.account.auth_backends.AuthenticationBackend',
+# ]

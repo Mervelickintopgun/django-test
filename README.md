@@ -1,1 +1,2 @@
-# django-test
+# django-blog-tutorial
+# django-blog-tutorial
