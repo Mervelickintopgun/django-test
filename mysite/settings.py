@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'widget_tweaks', # 追加
     'app', # 追加
+    'social_django',  # 追加
     'accounts',
     'django.contrib.sites',
     'allauth',
@@ -58,6 +59,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',  # 追加
+    'social_django.middleware.SocialAuthExceptionMiddleware',  # 追加
 ]
 
 
@@ -74,6 +76,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                'social_django.context_processors.backends',  # 追加
+                'social_django.context_processors.login_redirect', # 追加
             ],
         },
     },
@@ -155,3 +160,23 @@ STATIC_URL = '/static/'
 #     'django.contrib.auth.backends.ModelBackend',
 #     'allauth.account.auth_backends.AuthenticationBackend',
 # ]
+
+# 追加
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.open_id.OpenIdAuth',
+    'social_core.backends.google.GoogleOpenId',
+    'social_core.backends.google.GoogleOAuth2',
+
+    'social_core.backends.github.GithubOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.facebook.FacebookOAuth2',
+
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+
+LOGIN_URL = 'login' # 追加
+LOGIN_REDIRECT_URL = 'home' # 追加
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '232905799278-p8e99hle3bsnd3b7u8qd5fpukqaoecju.apps.googleusercontent.com'  # クライアントID
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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' # クライアント シークレット

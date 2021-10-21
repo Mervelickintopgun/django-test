@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect
 from allauth.account import views
+from django.views.generic import View
+from django.contrib.auth import views as auth_views
 
 # Create your views here.
-class LoginView(views.LoginView):
+class LoginView(auth_views.LoginView):
     template_name = 'accounts/login.html'
 
-class LogoutView(views.LogoutView):
+class LogoutView(auth_views.LogoutView):
     template_name = 'accounts/logout.html'
 
     def post(self, *args, **kwargs):

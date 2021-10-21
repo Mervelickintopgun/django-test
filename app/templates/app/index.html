@@ -1,5 +1,6 @@
-{% extends "app/base.html" %} {% block content %}
+{% extends "app/base.html" %} 
 
+{% block content %}
 <div class="row my-4">
   <div class="col-md-8">
     {% for post in post_data %}
@@ -30,5 +31,16 @@
     </div>
   </div>
 </div>
+
+  {% if user.is_authenticated %}
+      <h1>{{ user.username }}さんがログイン中です</h1>
+      <a href="{% url 'logout' %}">ログアウト</a>
+  {% else %}
+      <h1>メインメニュー</h1>
+      <p>メニューと言いつつログインする他選択肢は無い</p>
+      <a href="{% url 'login' %}">ログインする</a>
+
+  {% endif %}
+
 
 {% endblock %}
